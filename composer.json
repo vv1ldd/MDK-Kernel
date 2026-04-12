@@ -1,0 +1,17 @@
+{
+    "name": "meanly/mdk-kernel",
+    "description": "Deterministic Ledger Virtual Machine (DLVM) - Pure financial execution engine",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Meanly\\Mdk\\Kernel\\": "src/"
+        }
+    }
+}
