@@ -18,6 +18,11 @@ class CanonicalJsonEncoder {
         }
         if (is_string($data)) return json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR);
         if (is_int($data)) return (string)$data;
+        if (is_float($data)) {
+            // Keep numeric literal token (no quotes) so it matches JSON number tokens
+            // produced by mpo-operator (JS JSON.stringify of numbers).
+            return json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR);
+        }
         if (is_bool($data)) return $data ? 'true' : 'false';
         if (is_null($data)) return 'null';
         throw new \InvalidArgumentException("Unsupported type for canonical encoding: " . gettype($data));

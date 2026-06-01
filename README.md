@@ -2,7 +2,7 @@
 
 **Sovereign. Deterministic. Verifiable.**
 
-DLVM is a framework-agnostic financial execution engine governed by the **Meanly Causal Equilibrium Protocol (MCEP)**. It is designed to provide absolute replay integrity, 18-decimal atto-precision, and cryptographically verifiable state roots. 
+DLVM is the **ultimate source of truth** for financial execution, governed by the **Meanly Causal Equilibrium Protocol (MCEP)**. It serves as the sovereign execution authority, while external layers (like the Commitment layer) provide cryptographic anchoring and auditability.
 
 Built as a zero-dependency, pure-PHP 8.2+ "truth oracle" for building verifiable economic infrastructure.
 
@@ -35,6 +35,17 @@ $config = new EngineConfig(constitutionId: 'MCEP-v1.0-GENESIS');
 $result = DLVMKernel::boot($constitutionId, $config, $genesisState);
 
 echo "Reality Initialized: " . $result->stateRoot;
+```
+
+### 🌉 Integration via Bridge
+
+For host applications (like Bagisto), all filesystem interactions with MDK MUST be resolved through the `Meanly\Mdk\Kernel\Bridge\MDKPath` layer. This ensures that the application remains topology-independent.
+
+```php
+use Meanly\Mdk\Kernel\Bridge\MDKPath;
+
+// Resolving path to the commitment scripts
+$scriptPath = MDKPath::resolve('commitment.scripts') . '/gasless_relayer.js';
 ```
 
 ---
